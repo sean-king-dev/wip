@@ -1,0 +1,21 @@
+<div class="mobile-background-video">
+    [[mobileCloudinaryVideo? &video=`[[+video]]`]]
+    <video id="cloudinaryVideo" autoplay loop playsinline muted loading="lazy">
+        <source id="cloudinarySource" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<script async>
+    // Mobile Cloudinary video source
+    const cloudinaryVideo = document.getElementById('cloudinaryVideo');
+    const cloudinarySource = document.getElementById('cloudinarySource');
+    
+    let mobileBackgroundVideoLink = '[[+cloudinary_mobile]]';
+
+    cloudinarySource.src = mobileBackgroundVideoLink;
+
+    cloudinaryVideo.addEventListener('ended', function() {
+    });
+
+</script>

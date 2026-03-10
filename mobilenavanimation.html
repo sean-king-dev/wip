@@ -1,0 +1,94 @@
+<style>
+    a#menu-icon {
+    display: inline-block;
+    padding: 10px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    /* position: absolute; */
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: menu-opacity 0.5s ease;
+    -webkit-transition: menu-opacity 0.5s ease;
+    width: 50px;
+    }
+
+    a#menu-icon .bar {
+        margin: 3px;
+        width: 25px;
+        height: 3px;
+        border-radius: 1.5px;
+        -webkit-transition: margin 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+        transition: margin 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    a#menu-icon .bar:last-child {
+        width: 16px; /* 2/3 of 25px */
+    }
+
+    .template-30 a#menu-icon .bar:last-child {
+        width: 25px;
+    }
+
+
+    a#menu-icon.hidden {
+    /* opacity: 0.1; */
+    /* pointer-events: none; optionally disables click */
+    transition: opacity 0.5s ease;
+}
+
+
+    a#menu-icon.close .bar:first-child {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    a#menu-icon.close .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    a#menu-icon.close .bar:last-child {
+        width: 25px;
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    a#menu-icon .bar {
+        background: #fff;
+    }
+
+
+    @keyframes menu-opacity {
+        from {
+            opacity: 1;
+        } 
+
+        to {
+            opacity: 0;
+        }
+    }
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let activeMenu = document.querySelector('.contact-menu.modal.active');
+    let hamburgerMenu = document.querySelector('a#menu-icon');
+
+    if (activeMenu && hamburgerMenu) {
+        hamburgerMenu.classList.add("hidden");
+    }
+
+    // toggle hamburger/ close
+    // if(hamburgerMenu) {
+    //     hamburgerMenu.addEventListener("click", function() {
+    //         // e.preventDefault();
+
+    //         hamburgerMenu.classList.toggle("close");
+
+    //         openMobileNav();
+    //     })
+    // }
+});
+
+    
+
+</script>

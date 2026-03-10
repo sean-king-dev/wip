@@ -1,0 +1,742 @@
+<style>
+    .logo-item-rtf {
+        color: #000;
+    }
+
+    /* .logo-grid-container-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 0 10px;
+        width: 100%;
+    } */
+
+    .landingpage-logo-grid-container {
+        background: var(--white);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .logo-grid-container-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 0 10px;
+        width: 100%;
+        min-width: 110%;
+    }
+
+    .logo-item {
+        padding: 2% !important;
+    }
+
+    @media screen and (min-width:1024px) {
+        .landingpage-logo-grid-container {
+            padding: 7%;
+        }
+
+        .logo-grid-container-wrapper p {
+            min-width: 100%;
+        }
+    }
+
+    .logo-grid-container-wrapper .logo-item {
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        padding: 1%;
+        /* border: .5px dashed purple; */
+        max-width: 100%;
+    }
+
+    .image.cust-img-item img {
+        margin: 0 auto;
+        display: flex;
+        height: auto;
+        width: 100%;
+    }
+
+    .image.cust-img-item img:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: ease-in-out 0.3s;
+    }
+
+    /*  */
+
+
+    .logo-item.logo_item_width_20 {
+        width: 20%;
+        max-width: 20% !important;
+    }
+
+    .logo-item.logo_item_width_20 {
+        width: 20%;
+        max-width: 20% !important;
+    }
+
+    .logo-item.logo_item_width_33 {
+        width: 33%;
+        max-width: 33% !important;
+    }
+
+    .logo-item.logo_item_width_50 {
+        width: 50%;
+        max-width: 50% !important;
+    }
+
+    .logo-item.logo_item_width_100 {
+        width: 100%;
+        max-width: 100% !important;
+    }
+
+
+    [data-resource="15705"] .left {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: flex-start;
+    }
+
+    [data-resource="15705"] .left .logo-item {
+        flex: 1 1 50%;
+        max-width: 50%;
+        box-sizing: border-box;
+    }
+
+    [data-resource="15705"] .left .logo-item .image.cust-img-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    @media screen and (min-width:1024px) and (orientation: landscape) {
+        .logo-grid-container-wrapper .logo-item.logo_item_width_ {
+            width: 20%;
+        }
+
+        .logo-grid-container-wrapper .logo-item.logo_item_width_20 {
+            width: 20%;
+            max-width: 20% !important;
+        }
+
+        .logo-grid-container-wrapper .logo-item.logo_item_width_25 {
+            width: 25%;
+            max-width: 25% !important;
+        }
+
+        .logo-grid-container-wrapper .logo-item.logo_item_width_33 {
+            width: 33%;
+            max-width: 33% !important;
+        }
+
+        .logo-grid-container-wrapper .logo-item.logo_item_width_50 {
+            width: 50%;
+            max-width: 50% !important;
+        }
+
+        .logo-grid-container-wrapper .logo-item.logo_item_width_100 {
+            width: 100%;
+            max-width: 100% !important;
+        }
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+        min-width: 100px;
+    }
+
+    .logo-image-item {
+        box-sizing: border-box;
+        margin: .5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .logo-image-item img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    .image.cust-img-item {
+        margin-bottom: 10px;
+    }
+
+    /* Media Queries */
+
+    @media screen and (max-width: 1300px) {
+        .logo-grid-container-wrapper .logo-item {}
+
+        .logo-item {
+            min-width: 25%;
+        }
+
+    }
+
+    @media (max-width: 1200px) {
+        .logo-grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+        }
+
+        .landingpage-logo-grid-container {
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 7%;
+        }
+
+        .logo-item.logo_item_width_33 {
+            width: 50%;
+            max-width: 50% !important;
+        }
+
+
+    }
+
+
+    @media screen and (max-width: 1100px) {
+        .logo-grid-container-wrapper .logo-item {}
+
+        .logo-item {
+            min-width: 33%;
+        }
+
+        .title-top-row.border_bottom_value_yes .constrainer {
+            margin: auto;
+        }
+
+        .logo-grid-container-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            padding: 0 10px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+    }
+
+    @media screen and (max-width: 1100px) and (orientation: portrait) {
+
+        .logo-item,
+        .logo-item .logo_item_width_20 .logo-item .logo_item_width_25,
+        .logo-item .logo_item_width_33,
+        .logo-item .logo_item_width_50 {
+            min-width: 33%;
+            max-width: 33% !important;
+        }
+
+        .title-top-row.border_bottom_value_yes .constrainer {
+            margin: auto;
+        }
+
+        .logo-grid-container-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            padding: 0 10px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+
+
+
+    @media screen and (max-width: 800px) {
+
+        .title-top-row .title-top-inner p,
+        .logo-item-rtf {
+            /* border: 1px solid antiquewhite; */
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .title-top-row .title-top-inner p {
+            margin-left: 0%;
+            margin-bottom: 20px;
+        }
+
+        .logo-grid-container-wrapper .logo-item {
+            margin-left: -5%;
+        }
+
+        .logo-item {
+            min-width: 50%;
+        }
+
+        .image.cust-img-item img {
+            margin: 0 auto;
+            display: flex;
+            height: auto;
+            width: 60%;
+        }
+
+        .logo-grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(33.33%, 1fr));
+        }
+
+        .landingpage-logo-grid-container {
+            flex-direction: column;
+        }
+
+
+        .logo-item.logo_item_width_33 {
+            width: 100%;
+            max-width: 100% !important;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .logo-grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+        }
+
+        .logo-item {
+            min-width: 100%;
+        }
+
+        .image {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    @media screen and (max-width: 546px) {
+        .logo-item {
+            min-width: 100%;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .logo-grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        }
+    }
+
+    .display_button_yes {
+        display: block;
+    }
+
+    .display_button_no {
+        display: none !important;
+    }
+
+    .landingpage_button_custom {
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        padding: 10px 20px;
+        height: 50px;
+    }
+
+    .logo-item-rtf h3 {
+        font-family: "BWDarius", serif;
+        font-weight: bold;
+    }
+
+     .landingpage_button_custom a {
+        text-decoration: none;
+     }
+
+    .landingpage_button_custom span {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .landingpage_button_custom span p {
+        font-size: .88rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0;
+        color: #fff;
+        color: var(--white);
+        text-decoration: none;
+        list-style-type: none;
+    }
+
+    .landingpage_button_custom span i {
+        color: #fff;
+        list-style-type: none;
+    }
+
+    .landingpage_button_custom span i {
+        margin-left: 10px;
+    }
+
+    .landingpage_btn_colour_charcoal {
+        background: var(--charcoal);
+    }
+
+    .landingpage_btn_colour_charcoal:hover {
+        background: var(--darkGrey);
+    }
+
+
+    .landingpage_btn_colour_blue {
+        background: var(--blue);
+    }
+
+    .landingpage_btn_colour_blue:hover {
+        background: var(--blueDark);
+    }
+
+    .landingpage_btn_colour_coral {
+        background: var(--coral);
+    }
+
+    .landingpage_btn_colour_coral:hover {
+        background: var(--coralDark);
+    }
+
+    .landingpage_btn_colour_green {
+        background: var(--green);
+    }
+
+    .landingpage_btn_colour_green:hover {
+        background: var(--greenDark);
+    }
+
+    .landingpage_btn_colour_light-green {
+        background: var(--lightGreen);
+    }
+
+    .landingpage_btn_colour_light-green:hover {
+        background: var(--lightGreenDark);
+    }
+
+    .landingpage_btn_colour_raspberry {
+        background: var(--raspberry);
+    }
+
+    .landingpage_btn_colour_raspberry:hover {
+        background: var(--raspberryDark);
+    }
+
+    .landingpage_btn_colour_teal {
+        background: var(--teal);
+    }
+
+    .landingpage_btn_colour_teal:hover {
+        background: var(--tealDark);
+    }
+
+    .landingpage_btn_colour_turquoise {
+        background: var(--turquoise);
+    }
+
+    .landingpage_btn_colour_turquoise:hover {
+        background: var(--turquoiseDark);
+    }
+
+    .landingpage_btn_colour_purple {
+        background: var(--purple);
+    }
+
+    .landingpage_btn_colour_purple:hover {
+        background: var(--purpleDark);
+    }
+
+
+    /* modal popup */
+/* 
+    .modal_video_popup {
+        display: none;
+    }
+
+    .modal_video_popup.open_up {
+        display: block;
+    }
+
+    .close_down {
+        display: none;
+    }
+
+    .modal_video_popup { 
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+}
+ 
+.modal_video_popup.open_up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.lp_modal_inner {
+    background: #fff;
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+}
+ 
+.lp_iframe {
+    width: 100%;
+    height: 450px;
+} */
+
+
+ 
+ 
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+}
+ 
+.video-modal.open {
+    display: block;
+}
+ 
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    padding: 0;
+    max-width: 800px;
+    width: 90%;
+}
+ 
+.modal-content iframe {
+    width: 100%;
+    height: 450px;
+}
+ 
+.close {
+    color: #fff;
+    position: absolute;
+    right: -5vw;
+    top: 15vh;
+    font-size: 5rem;
+    cursor: pointer;
+    z-index: 9999999;
+    pointer-events: auto;
+}
+
+button.lp_btn_style {
+    background: none !important;
+    border: none !important;
+}
+</style>
+
+
+<!-- v5 -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    function openVideoModal(el) {
+        let url = el.getAttribute('data-video');
+
+        let separator = url.indexOf('?') !== -1 ? '&' : '?';
+
+        url = url + separator + 'autoplay=1';
+        
+        document.getElementById('videoFrame').src = url;
+        document.getElementById('videoModal').classList.add('open');
+    }
+
+    function closeVideoModal() {
+        document.getElementById('videoModal').classList.remove('open');
+        document.getElementById('videoFrame').src = "";
+    }
+
+    // expose functions globally (needed because inline onclick is used)
+    window.openVideoModal = openVideoModal;
+    window.closeVideoModal = closeVideoModal;
+
+    // click outside background = close
+    let modal = document.getElementById('videoModal');
+    if (modal) {
+        modal.addEventListener('click', function (e) {
+            if (e.target === this) closeVideoModal();
+        });
+    }
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- v4 -->
+ <!-- <script>
+function openVideoModal(el) {
+    var url = el.getAttribute('data-video');
+    document.getElementById('videoFrame').src = url;
+    document.getElementById('videoModal').classList.add('open');
+}
+ 
+function closeVideoModal() {
+    var modal = document.getElementById('videoModal');
+    modal.classList.remove('open');
+    document.getElementById('videoFrame').src = ""; // Stop video
+}
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- v3 -->
+ <!-- <script>
+window.addEventListener("DOMContentLoaded", function () {
+
+    // Loop through each repeater block
+    document.querySelectorAll(".logo-item").forEach(block => {
+
+        const openBtn  = block.querySelector(".lp_open_modal");
+        const modal    = block.querySelector(".lp_modal");
+        const iframe   = block.querySelector(".lp_iframe");
+        const closeBtn = block.querySelector(".lp_close_modal");
+
+        if (!openBtn || !modal || !iframe) return;
+
+        openBtn.addEventListener("click", (e) => {
+            e.preventDefault(); // stop the <a> navigating to Vimeo
+
+            const vimeoUrl = openBtn.querySelector("a").href;
+
+            // Load Vimeo into modal iframe
+            iframe.src = vimeoUrl;
+
+            // Show this modal
+            modal.classList.add("open_up");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.classList.remove("open_up");
+
+            // remove the video so it stops playing
+            iframe.src = "";
+        });
+
+    });
+
+});
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- v2 -->
+<!-- <script>
+window.addEventListener("DOMContentLoaded", function () {
+ 
+    // Each repeater block
+    document.querySelectorAll(".logo-item").forEach(block => {
+ 
+        const openBtn = block.querySelector(".lp_open_modal");
+        const modal   = block.querySelector(".lp_modal");
+        const iframe  = block.querySelector(".lp_iframe");
+        const closeBtn = block.querySelector(".lp_close_modal");
+ 
+        if (!openBtn || !modal || !iframe) return;
+ 
+        openBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+ 
+            const link = openBtn.querySelector("a").getAttribute("href");
+ 
+            iframe.src = link; // Load Vimeo into iframe
+            modal.classList.add("open_up");
+        });
+ 
+        closeBtn.addEventListener("click", () => {
+            modal.classList.remove("open_up");
+            iframe.src = ""; // Stop video
+        });
+ 
+    });
+ 
+});
+</script> -->
+
+
+
+
+
+
+<!-- v1 -->
+<!-- <script>
+    window.addEventListener("DOMContentLoaded", function () {
+
+
+        const openButtons = document.querySelector(".lp_open_modal");
+        const modal = document.querySelector(".lp_modal");
+        const closeButton = document.querySelector(".lp_close_modal");
+
+        // openModal.addEventListener("click", () => {
+        //     lp_modal.classList.add("open_up");
+        // });
+
+        // closeModal.addEventListener("click", () => {
+        //     lp_modal.classList.add("close_down");
+        // })
+
+        openButtons.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                modal.classList.add("open_up");
+            })
+            
+        });
+
+        closeButton.addEventListener("click", () => {
+            modal.classList.remove("open_up");
+        })
+    });
+</script> -->

@@ -1,0 +1,281 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+// anchor scroll
+    const links = document.querySelectorAll("[data-anchorlink]");
+
+    links.forEach(link => {
+      link.addEventListener("click", function (e) {
+        const anchorId = this.getAttribute("data-anchorlink");
+        const target = document.getElementById(anchorId);
+
+        const paddedTarget = target + 50;
+
+        if (target) {
+          e.preventDefault();
+          
+          // target.scrollIntoView({
+          //   behavior: "smooth",
+          //   block: "nearest"
+          // });
+          const scrollContainer = document.querySelector('.page');
+          const offset = 80;
+
+          const top =
+            target.getBoundingClientRect().top +
+            scrollContainer.scrollTop -
+            offset;
+
+            scrollContainer.scrollTo({
+              top,
+              behavior: 'smooth'
+            });
+
+          links.forEach(l => l.classList.remove("active"));
+          this.classList.add("active");
+        }
+      });
+    });
+
+    //  for sidescrolling nav on handheld devices
+     const wrappers = document.querySelectorAll('.scroll-nav-wrapper');
+ 
+      wrappers.forEach(wrapper => {
+        const scrollContainer = wrapper.querySelector('.sticky-nav-menu');
+        const prevBtn = wrapper.querySelector('.scroll-btn.prev');
+        const nextBtn = wrapper.querySelector('.scroll-btn.next');
+    
+        prevBtn.addEventListener('click', () => {
+          scrollContainer.scrollBy({ left: -150, behavior: 'smooth' });
+        });
+    
+        nextBtn.addEventListener('click', () => {
+          scrollContainer.scrollBy({ left: 150, behavior: 'smooth' });
+        });
+      });
+
+
+// toggle nav
+    const undergradBtn = document.getElementById("undergradBtn");
+    const gradBtn = document.getElementById("gradBtn");
+
+    const uSections = document.querySelectorAll(".undergrad-section-toggle");
+    const gSections = document.querySelectorAll(".graduate-section-toggle");
+
+
+  function changeToggleCaption() {
+      const undergradCaption = document.querySelector('p#undergrad-caption.toggle_caption');
+      const graduateCaption = document.querySelector('p#graduate-caption.toggle_caption');
+
+      // If no caption elements are found, exit safely
+      if (!undergradCaption || !graduateCaption) return;
+
+      const isUndergradVisible = Array.from(uSections).some(sec => sec.style.display !== "none");
+      const isGraduateVisible = Array.from(gSections).some(sec => sec.style.display !== "none");
+
+      if (isUndergradVisible) {
+          undergradCaption.style.display = "block";
+          graduateCaption.style.display = "none";
+      } else if (isGraduateVisible) {
+          graduateCaption.style.display = "block";
+          undergradCaption.style.display = "none";
+      } else {
+          undergradCaption.style.display = "none";
+          graduateCaption.style.display = "none";
+      }
+  }
+
+
+    const uSectionHoverCards = document.querySelectorAll(".ku-hover-card-wrapper.undergrad-section-toggle");
+    const gSectionHoverCards = document.querySelectorAll(".ku-hover-card-wrapper.graduate-section-toggle");
+
+    const ugLinks = document.querySelectorAll(".ug-menu-links");
+    const gLinks = document.querySelectorAll(".g-menu-links");
+
+    const toggleWrapper = document.querySelector(".toggle-wrapper");
+
+    function showUndergrad() {
+        ugLinks.forEach(el => el.style.display = "block");
+        gLinks.forEach(el => el.style.display = "none");
+        undergradBtn.classList.add("active");
+        gradBtn.classList.remove("active");
+        toggleWrapper.classList.remove("is-grad");
+        uSections.forEach(sec => sec.style.display = "flex");
+        gSections.forEach(sec => sec.style.display = "none");
+
+        uSectionHoverCards.forEach(sec => sec.style.display = "block");
+        gSectionHoverCards.forEach(sec => sec.style.display = "none");
+        console.log("showundergrad fn clicked!");
+
+        changeToggleCaption();
+    }
+
+    function showGrad() {
+        gLinks.forEach(el => el.style.display = "block");
+        ugLinks.forEach(el => el.style.display = "none");
+        gradBtn.classList.add("active");
+        undergradBtn.classList.remove("active");
+        toggleWrapper.classList.add("is-grad");
+        uSections.forEach(sec => sec.style.display = "none");
+        gSections.forEach(sec => sec.style.display = "flex");
+
+        uSectionHoverCards.forEach(sec => sec.style.display = "none");
+        gSectionHoverCards.forEach(sec => sec.style.display = "block");
+        console.log("showgrad fn clicked!");
+
+        changeToggleCaption();
+    }
+
+    showUndergrad();
+    // showGrad();
+
+    // Event listeners
+    undergradBtn.addEventListener("click", showUndergrad);
+    gradBtn.addEventListener("click", showGrad);
+
+
+// Mobile toggle switch handler
+const undergradSwitch = document.getElementById("undergradSwitch");
+const gradSwitch = document.getElementById("gradSwitch");
+ 
+if (undergradSwitch && gradSwitch) {
+    
+    undergradSwitch.checked = true;
+    gradSwitch.checked = false;
+ 
+    function syncMobileToggles(selected) {
+        if (selected === "undergrad") {
+            undergradSwitch.checked = true;
+            gradSwitch.checked = false;
+            showUndergrad();
+        } else {
+            undergradSwitch.checked = false;
+            gradSwitch.checked = true;
+            showGrad();
+        }
+    }
+ 
+    undergradSwitch.addEventListener("change", () => {
+        if (undergradSwitch.checked) {
+            syncMobileToggles("undergrad");
+        } else {
+            undergradSwitch.checked = true;
+        }
+    });
+ 
+    gradSwitch.addEventListener("change", () => {
+        if (gradSwitch.checked) {
+            syncMobileToggles("grad");
+        } else {
+            gradSwitch.checked = true;
+        }
+    });
+ 
+    syncMobileToggles("undergrad");
+}
+
+
+// nav scroll
+const sections = document.querySelectorAll(
+  '.undergrad-section-toggle, .graduate-section-toggle'
+);
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const id = entry.target.id;
+
+      links.forEach(link => {
+        link.classList.toggle(
+          'active',
+          link.dataset.anchorlink === id
+        );
+      });
+    });
+  },
+  {
+    rootMargin: '-45% 0px -45% 0px', // activates when section is centered
+    threshold: 0
+  }
+);
+
+sections.forEach(section => observer.observe(section));
+
+
+    // const nav = document.querySelectorAll('.children.sticky-nav-menu, .toggle-nav-inner');
+    // if (!nav) return;
+
+    // const selectStudy = document.querySelectorAll('.select-study');
+ 
+    // const navTop = selectStudy.getBoundingClientRect().top + window.scrollY;
+ 
+    // window.addEventListener('scroll', function () {
+    //   if (window.scrollY >= navTop) {
+    //     nav.classList.add('is-fixed');
+    //   } else {
+    //     nav.classList.remove('is-fixed');
+    //   }
+    // });
+
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const innerNav = document.querySelector('.toggle-nav-inner');
+  const scrollContainer = document.querySelector('.page');
+
+  if (!innerNav || !scrollContainer) return;
+
+  const triggerPoint =
+    innerNav.getBoundingClientRect().top + scrollContainer.scrollTop;
+
+  scrollContainer.addEventListener('scroll', () => {
+    const shouldFix =
+      scrollContainer.scrollTop >= triggerPoint;
+
+    innerNav.classList.toggle('is-fixed', shouldFix);
+  });
+
+
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // explore our universities toggle
+  let scrollContainer = document.querySelector('.page')
+  let exploreArrow = document.querySelector('.explore_arrow');
+
+  if (!scrollContainer || !exploreArrow) return;
+
+exploreArrow.classList.add('scrollArrow');
+
+exploreArrow.addEventListener("click", () => {
+  const headerHeight = 75;
+  const scrollAmount = scrollContainer.clientHeight * 1 - headerHeight;
+  scrollContainer.scrollBy({
+    top: scrollAmount,
+    behavior: "smooth"
+  })
+})
+})
+
+
+</script>
+
+<style>
+  .scrollArrow:hover {
+    /* background: lime; */
+    cursor: pointer;
+  }
+</style>
+
+<!-- <style>
+  .ug-menu-links.active *,
+  .g-menu-links.active * {
+    color: #fff !important;
+    font-size: var(--x-small) !important;
+  }
+</style> -->

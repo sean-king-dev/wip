@@ -1,0 +1,52 @@
+<script>
+
+// v2
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Select the parent wrapper (assumed to always exist)
+    const toggleWrapper = document.querySelector('.toggle-wrapper');
+
+    if (!toggleWrapper) return; // safety check
+
+    // Event delegation: listen for clicks on child elements
+    toggleWrapper.addEventListener('click', function(e) {
+        const target = e.target;
+
+        // Only proceed if we clicked one of the buttons
+        if (target.id === 'undergradBtn' || target.id === 'gradBtn') {
+
+            const undergradBtn = document.getElementById('undergradBtn');
+            const gradBtn = document.getElementById('gradBtn');
+
+            if (!undergradBtn || !gradBtn) return; // safety check
+
+            if (target.id === 'undergradBtn') {
+                undergradBtn.classList.add('active');
+                gradBtn.classList.remove('active');
+            } else {
+                gradBtn.classList.add('active');
+                undergradBtn.classList.remove('active');
+            }
+        }
+    });
+
+});
+
+// v1
+    // document.addEventListener("DOMContentLoaded", function () {
+
+    //     const undergradBtn = document.getElementById('undergradBtn');
+    //     const gradBtn = document.getElementById('gradBtn');
+
+    //     undergradBtn.addEventListener('click', () => {
+    //         undergradBtn.classList.add('active');
+    //         gradBtn.classList.remove('active');
+    //     });
+
+    //     gradBtn.addEventListener('click', () => {
+    //         gradBtn.classList.add('active');
+    //         undergradBtn.classList.remove('active');
+    //     })
+    // });
+
+</script>

@@ -1,0 +1,91 @@
+<style>
+    .ku-carousel-dev {
+  position: relative;
+  width: 100%;
+  perspective: 1000px;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.modal-wrapper-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.video-modal-container {
+  flex: 0 0 300px;
+  margin: 0 20px;
+  transform-origin: center center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0.5;
+  transform: scale(0.8) rotateY(30deg);
+}
+
+.video-modal-container.active {
+  transform: scale(1.2) rotateY(0deg);
+  opacity: 1;
+  z-index: 2;
+}
+
+.carousel-control-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.ku-carousel-btn-desktop,
+.ku-carousel-btn-mobile {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ku-carousel-btn-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ku-carousel-btn-desktop {
+    display: none;
+  }
+  .ku-carousel-btn-mobile {
+    display: inline-block;
+  }
+}
+
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  background: #aaa;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-dot.active {
+  background: #333;
+}
+
+
+</style>

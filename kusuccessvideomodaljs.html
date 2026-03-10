@@ -1,0 +1,32 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const playButtons = document.querySelectorAll("[data-open]");
+    const closeButtons = document.querySelectorAll("[data-close]");
+    const modals = document.querySelectorAll(".ku-success-modal-video-popup");
+ 
+    playButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const id = button.getAttribute("data-open");
+            const modal = document.querySelector(`.ku-success-modal-video-popup[data-modal='${id}']`);
+            if (modal) {
+                modal.classList.add("active");
+                const iframe = modal.querySelector("iframe");
+                const src = iframe.getAttribute("src");
+                iframe.setAttribute("src", src + (src.includes("?") ? "&autoplay=1" : "?autoplay=1"));
+            }
+        });
+    });
+ 
+    closeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const id = button.getAttribute("data-close");
+            const modal = document.querySelector(`.ku-success-modal-video-popup[data-modal='${id}']`);
+            if (modal) {
+                modal.classList.remove("active");
+                const iframe = modal.querySelector("iframe");
+                iframe.setAttribute("src", iframe.getAttribute("src").replace(/(\?|&)autoplay=1/, ""));
+            }
+        });
+    });
+});
+</script>

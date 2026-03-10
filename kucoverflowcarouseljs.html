@@ -1,0 +1,51 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const containers = document.querySelectorAll('.video-modal-container');
+    const wrapper = document.querySelector('.modal-wrapper-layout');
+    const dotsWrapper = document.querySelector('.carousel-dots');
+    let current = 0;
+
+    // Create dots
+    containers.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot';
+        dot.dataset.index = index;
+        dotsWrapper.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function updateCarousel() {
+        containers.forEach((item, index) => {
+            item.classList.remove('active');
+            let offset = index - current;
+            item.style.transform = `translateX(${offset * 320}px) scale(${index === current ? 1.2 : 0.8}) rotateY(${index === current ? 0 : offset > 0 ? -30 : 30}deg)`;
+            item.style.opacity = index === current ? 1 : 0.5;
+            if (index === current) item.classList.add('active');
+        });
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[current]) dots[current].classList.add('active');
+    }
+
+    // Dot click event
+    dotsWrapper.addEventListener('click', function (e) {
+        if (e.target.classList.contains('carousel-dot')) {
+            current = parseInt(e.target.dataset.index);
+            updateCarousel();
+        }
+    });
+
+    // Arrow navigation
+    ['prev', 'next', 'prev_mobile', 'next_mobile'].forEach(id => {
+        const btn = document.getElementById(id);
+        btn?.addEventListener('click', () => {
+            if (id.includes('prev') && current > 0) current--;
+            if (id.includes('next') && current < containers.length - 1) current++;
+            updateCarousel();
+        });
+    });
+
+    updateCarousel(); // Initial render
+});
+</script>

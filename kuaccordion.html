@@ -1,0 +1,235 @@
+<style>
+    :root {
+        --stout_cyan: #00a3e0;
+        --cyan_light: rgba(0, 163, 224, .25);
+        --uw_teal: #13294b;
+        --stout_eggshell: #f3f3f5;
+        --white: #fff;
+        --black: #000;
+        --charcoal: #252f38;
+    }
+
+    section.ku-accordion-wrapper {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    section.ku-accordion-wrapper.simple {
+        width: 80%;
+    }
+
+    section.ku-accordion-wrapper.slim {
+        width: 90%;
+    }
+
+    section.ku-accordion-wrapper.slim_icon {
+        width: 100%;
+        /* border: 1px solid magenta; */
+    }
+
+    .ku-accordion_top {
+        background: var(--white);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+
+    span.ku-accordion-image-span {
+        display: inline-block;
+        height: 160px;
+        width: 100px;
+        height: 100%;
+        aspect-ratio: 1/1;
+    }
+
+    span.ku-accordion-image-span.slim_icon {
+        /* border: 1px solid red; */
+        background-repeat: no-repeat !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-position: 50% 50% !important;
+        background-size: 50% !important;
+    }
+
+    span.ku-accordion-title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 40px;
+    }
+
+    span.ku-accordion-title p {
+        margin: unset;
+        color: var(--uw_teal);
+        font-size: 1.625rem;
+        font-weight: bold;
+    }
+
+    section.ku-accordion-wrapper i.fas {
+        /* border: 1px solid yellow; */
+        padding: 2%;
+        /* margin-top: 3%; */
+        margin-top: 0.5%;
+    }
+
+    /* section.ku-accordion-wrapper .ku-accordion_top {
+        border: 1px solid red;
+    }
+
+    section.ku-accordion-wrapper .ku-accordion_top.simple {
+        border: 1px solid orange;
+    } */
+
+    /* .ku-accordion_panel {
+        z-index: 1;
+    } */
+
+    section.ku-accordion-wrapper .ku-accordion_top.simple i.fas {
+        /* border: 1px solid grey; */
+        margin-top: 0%;
+    }
+
+    section.ku-accordion-wrapper .ku-accordion_top.slim {
+        /* border: 1px solid yellowgreen; */
+        margin-top: 0%;
+    }
+
+    section.ku-accordion-wrapper .ku-accordion_top.slim_icon {
+        /* border: 2px solid goldenrod; */
+        margin-top: 0%;
+        height: 75px;
+    }
+
+    section.ku-accordion-wrapper .ku-accordion_top.slim_icon i.fas {
+        margin-top: -.5%;
+    }
+
+    section.ku-accordion-wrapper .ku-accordion_top.slim i.fas {
+        /* border: 1px solid blue; */
+        margin-top: 0%;
+    }
+
+    .fas.fa-plus,
+    .fas.fa-minus {
+        color: var(--uw_teal);
+        font-size: 2rem;
+    }
+
+    .ku-accordion_panel {
+        background: #fff;
+        background: var(--white);
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        margin-bottom: 1rem;
+        margin-top: -1rem;
+    }
+
+    @media screen and (max-width:1033px) {
+        section.ku-accordion-wrapper {
+            width: 90% !important;
+        }
+
+        .ku-accordion_panel {
+            margin-top: 0px;
+        }
+    }
+
+    @media screen and (max-width:850px) and (orientation: portrait) {
+
+        section.ku-accordion-wrapper i.fas {
+            /* border: 1px solid yellow; */
+            padding: 2%;
+            margin-top: 1%;
+        }
+
+        span.ku-accordion-title p {
+            font-size: 1.35rem;
+        }
+
+        section.ku-accordion-wrapper.slim_icon .ku-accordion_top.slim_icon i.fas {
+            /* border: 1px solid yellow; */
+            padding: 2%;
+            margin-top: 1%;
+        }
+
+        .admissions-section .ku_rich_text_field {
+            width: 90%;
+        }
+    }
+
+    @media screen and (max-width:756px) {
+        span.ku-accordion-title p {
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        section.ku-accordion-wrapper i.fas{
+            margin-top: 4%;
+        }
+
+        .fas.fa-plus, .fas.fa-minus {
+            font-size: 1.3rem;
+        }
+    }
+
+    @media screen and (max-width:546px) {
+        span.ku-accordion-title p {
+            font-size: .88rem;
+            width: 100%;
+        }
+
+        span.ku-accordion-title {
+            margin-left: 10px;
+        }
+
+        .ku-accordion-wrapper.slim_icon .ku-accordion_top.slim_icon {
+            /* border: 2px solid orange; */
+            height: 60px;
+        }
+
+        .ku-accordion-wrapper.slim_icon span.ku-accordion-title {
+            margin-left: 0px;
+        }
+
+        /* .ku-accordion-wrapper.slim_icon i.fas {
+            border: 1px solid red;
+        } */
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const accordions = document.querySelectorAll(".ku-accordion-wrapper");
+
+        accordions.forEach(wrapper => {
+            const top = wrapper.querySelector(".ku-accordion_top");
+            const panel = wrapper.querySelector(".ku-accordion_panel");
+            const plusIcon = top.querySelector(".fa-plus");
+            const minusIcon = top.querySelector(".fa-minus");
+
+            // Start with panel hidden
+            panel.style.display = "none";
+            plusIcon.style.display = "inline";
+            minusIcon.style.display = "none";
+
+            top.addEventListener("click", () => {
+                if (panel.style.display === "none") {
+                    panel.style.display = "block";
+                    plusIcon.style.display = "none";
+                    minusIcon.style.display = "inline";
+                } else {
+                    panel.style.display = "none";
+                    plusIcon.style.display = "inline";
+                    minusIcon.style.display = "none";
+                }
+            });
+        });
+    });
+</script>

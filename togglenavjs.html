@@ -1,0 +1,43 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const undergradBtn = document.getElementById("undergradBtn");
+    const gradBtn = document.getElementById("gradBtn");
+    const ugLinks = document.querySelectorAll(".ug-menu-link");
+    const gLinks = document.querySelectorAll(".g-menu-link");
+
+    function showUndergrad() {
+        ugLinks.forEach(el => el.style.display = "block");
+        gLinks.forEach(el => el.style.display = "none");
+        undergradBtn.classList.add("active");
+        gradBtn.classList.remove("active");
+    }
+
+    function showGrad() {
+        gLinks.forEach(el => el.style.display = "block");
+        ugLinks.forEach(el => el.style.display = "none");
+        gradBtn.classList.add("active");
+        undergradBtn.classList.remove("active");
+    }
+
+    // Default view: show undergrad links
+    showUndergrad();
+
+    // Event listeners
+    undergradBtn.addEventListener("click", showUndergrad);
+    gradBtn.addEventListener("click", showGrad);
+});
+</script>
+<style>
+.toggle-wrapper p {
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid transparent;
+}
+.toggle-wrapper p.active {
+    border-bottom: 2px solid #333;
+    font-weight: bold;
+}
+</style>
+

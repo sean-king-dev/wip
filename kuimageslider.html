@@ -1,0 +1,119 @@
+<style>
+    .ku_image_slider_section {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .ku_image_slider_track {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .ku_image_slider_content {
+        min-width: 100%;
+        display: flex;
+
+    }
+
+    .ku_image_slider_content img {
+        height: auto;
+        display: block;
+    }
+
+    .ku-slider-toggle {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border:none;
+        cursor: pointer;
+        background-color: rgba(0,0,0,0);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        transition: background-image 0.3s ease;
+    }
+
+    .ku-slider-toggle {
+        background-image: url('https://uat.kingseducation.com//assets/images/assets/student-success-pause.svg');
+        height: 50px;
+        width: 50px;
+        z-index: 15;
+    }
+
+    .ku-slider-toggle.is-playing {
+        background-image: url('https://uat.kingseducation.com//assets/images/assets/student-success-pause.svg');
+        height: 50px;
+        width: 50px;
+        z-index: 15;
+    }
+
+    .ku-slider-toggle.is-paused {
+        background-image: url('https://uat.kingseducation.com//assets/images/assets/student-success-play.svg');
+        height: 50px;
+        width: 50px;
+        z-index: 15;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function (){
+        const track = document.querySelector('.ku_image_slider_track');
+        const slides = document.querySelectorAll('.ku_image_slider_content');
+        const slider = document.querySelector('.ku_image_slider_section');
+        const toggleBtn = document.querySelector('.ku-slider-toggle')
+
+
+        if (! track || slides.length === 0) return;
+
+        let index = 0;
+        const totalSlides = slides.length;
+        let interval = null;
+        const delay = 993000;
+        let isPlaying = true;
+
+        function moveSlider() {
+
+            index = (index + 1) % slides.length;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function startSlider() {
+            if (!interval) {
+                interval = setInterval(moveSlider, delay);
+
+                isPlaying = true;
+                toggleBtn.classList.add('is-playing');
+                toggleBtn.classList.remove('is-paused');
+                toggleBtn.setAttribute('aria-label', 'Pause Slideshow')
+            }
+        }
+
+        function stopSlider() {
+            clearInterval(interval);
+            interval = null;
+
+            isPlaying = false;
+            toggleBtn.classList.remove('is-playing');
+            toggleBtn.classList.add('is-paused');
+            toggleBtn.setAttribute('aria-label', 'Play Slideshow');
+        }
+
+        startSlider();
+
+        // pause slideshow on mouse hover
+        slider.addEventListener('mouseenter', stopSlider);
+        // slider.addEventListener('mouseleave', startSlider);
+
+        toggleBtn.addEventListener('click', () => {
+            isPlaying ?  stopSlider() :  startSlider();
+        });
+
+
+
+        setInterval(moveSlider, 3000);
+    });
+</script>
