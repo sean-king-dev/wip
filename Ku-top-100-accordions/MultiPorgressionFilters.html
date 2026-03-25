@@ -1,0 +1,172 @@
+[[!If?
+&subject=`[[UltimateParent? &id=`[[*id]]`]]`
+&operator=`EQ`
+&operand=`[[++ultimate_uk]]`
+&then=`<div class="filter filter-pair">
+    <div class="label">Filter by Kings course:</div>
+    <div class="fake-select course-filter">
+        <div class="label">All</div>
+        <div class="dropper"><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></div>
+        <div class="dropdown">
+            <div class="option" onclick="insertStaticParam('course', 'all', 'subject')">All</div>
+            [[!getKingsCourseFilters]]
+            [[+KingsCourseFilterIds]]
+        </div>
+
+        <select name="filter-course" class="hidden">
+            <option value="All">All</option>
+            [[pdoResources?
+            &parents=`23`
+            &resources=`[[+KingsCourseFilterIds]]`
+            &depth=`0`
+            &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+            &limit=`100`
+            ]]
+        </select>
+    </div>
+</div>
+<div class="filter filter-pair">
+    <div class="label">Filter by Degree subject:</div>
+    <div class="fake-select subject-filter">
+        <div class="label">All</div>
+        <div class="dropper"><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></div>
+        <div class="dropdown">
+            <div class="option" onclick="insertStaticParam('subject', 'all', 'course')">All</div>
+            [[pdoResources?
+            &parents=`34`
+            &depth=`0`
+            &tpl=`@INLINE <div class="option" onclick="insertStaticParam('subject', [[+id]], 'course')"
+                data-value="[[+id]]">[[+pagetitle]]</div>`
+            &limit=`100`
+            ]]
+        </div>
+
+        <select name="filter-subject" class="hidden">
+            <option value="All">All</option>
+            [[pdoResources?
+            &parents=`34`
+            &depth=`0`
+            &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+            &limit=`100`
+            ]]
+        </select>
+    </div>
+</div>`
+]]
+
+[[!If?
+&subject=`[[UltimateParent? &id=`[[*id]]`]]`
+&operator=`EQ`
+&operand=`[[++ultimate_us]]`
+&then=`<div class="filter filter-pair">
+    <div class="label">Filter by Kings course:</div>
+    <div class="fake-select course-filter">
+        <div class="label">All</div>
+        <div class="dropper"><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></div>
+        <div class="dropdown">
+            <div class="option" onclick="insertStaticParam('course', 'all')">All</div>
+            [[!getKingsCourseFilters]]
+            [[+ ]]
+        </div>
+
+        <select name="filter-course" class="hidden">
+            <option value="All">All</option>
+            <!-- [[pdoResources?
+                        &parents=`44`
+                        &depth=`0`
+                        &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+                        &limit=`100`
+                    ]] -->
+            [[pdoResources?
+            &parents=`44`
+            &resources=`[[+KingsCourseFilterIds]]`
+            &depth=`0`
+            &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+            &limit=`100`
+            ]]
+        </select>
+    </div>
+</div>
+<div class="filter filter-pair">
+    <div class="label">Filter by Degree subject:</div>
+    <div class="fake-select subject-filter">
+        <div class="label">All</div>
+        <div class="dropper"><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></div>
+        <div class="dropdown">
+            <div class="option" onclick="insertStaticParam('subject', 'all')">All</div>
+            [[pdoResources?
+            &parents=`389`
+            &depth=`0`
+            &tpl=`@INLINE <div class="option" onclick="insertStaticParam('subject', [[+id]])" data-value="[[+id]]">
+                [[+pagetitle]]</div>`
+            &limit=`100`
+            ]]
+        </div>
+
+        <select name="filter-subject" class="hidden">
+            <option value="All">All</option>
+            [[pdoResources?
+            &parents=`389`
+            &depth=`0`
+            &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+            &limit=`100`
+            ]]
+        </select>
+    </div>
+</div>`
+]]
+
+[[!If?
+&subject=`[[UltimateParent? &id=`[[*id]]`]]`
+&operator=`in_array`
+&operand=`15234`
+&then=`<div class="filter filter-pair">
+    <div class="label">Filter by Kings course:</div>
+    <div class="fake-select course-filter">
+        <div class="label">All</div>
+        <div class="dropper"><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></div>
+        <div class="dropdown">
+            <div class="option" onclick="insertStaticParam('course', 'all')">All</div>
+            [[!getKUKingsCourseFiltersUS]]
+            [[+KingsCourseFilterIdsUS]]
+        </div>
+
+        <select name="filter-course" class="hidden ku-select-filter">
+            <option value="All">All</option>
+            [[pdoResources?
+            &parents=`44`
+            &resources=`[[+KingsCourseFilterIdsUS]]`
+            &depth=`0`
+            &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+            &limit=`100`
+            ]]
+        </select>
+    </div>
+</div>
+<div class="filter filter-pair">
+    <div class="label">Filter by Degree subject:</div>
+    <div class="fake-select subject-filter">
+        <div class="label">All</div>
+        <div class="dropper"><i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></div>
+        <div class="dropdown">
+            <div class="option" onclick="insertStaticParam('subject', 'all')">All</div>
+            [[pdoResources?
+            &parents=`389`
+            &depth=`0`
+            &tpl=`@INLINE <div class="option" onclick="insertStaticParam('subject', [[+id]])" data-value="[[+id]]">
+                [[+pagetitle]]</div>`
+            &limit=`100`
+            ]]
+        </div>
+
+        <select name="filter-subject" class="hidden">
+            <option value="All">All</option>
+            [[pdoResources?
+            &parents=`389`
+            &depth=`0`
+            &tpl=`@INLINE <option value="[[+id]]">[[+pagetitle]]</option>`
+            &limit=`100`
+            ]]
+        </select>
+    </div>
+</div>

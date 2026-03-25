@@ -1,0 +1,246 @@
+<style>
+.progression-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+ 
+.filter-pair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+.label {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+ 
+/* Custom select */
+.custom-select {
+    position: relative;
+    width: 300px;
+    cursor: pointer;
+}
+ 
+/* Selected (closed state) */
+.custom-select .selected {
+    height: 50px;
+    border-radius:16px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: 0.2s;
+}
+ 
+/* Arrow */
+/* .custom-select .selected::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    font-size: 0.8rem;
+} */
+.custom-select .selected::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+
+    background-image: url('https://uat.kingseducation.com/assets/images/assets/ku-media/ku-arrow-icon-down.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    pointer-events: none;
+}
+ 
+/* Hover */
+.custom-select:hover .selected {
+    border-color: #2ebca0;
+}
+ 
+/* Dropdown */
+.custom-select .options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 2px solid #2ebca0;
+    border-radius: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+ 
+/* Open state */
+.custom-select.open .options {
+    display: block;
+}
+ 
+/* Option */
+.custom-select .option {
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    transition: 0.2s;
+    background: #fff;
+    border-bottom: 1px solid #2ebca0;
+}
+
+.custom-select .option:last-of-type {
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    transition: 0.2s;
+    background: #fff;
+    border-bottom: none;
+}
+
+.custom-select .options {
+    max-height: 250px;
+    overflow-y: auto;
+
+    /* Hide scrollbar (Firefox) */
+    scrollbar-width: none;
+
+    /* Hide scrollbar (IE/Edge legacy) */
+    -ms-overflow-style: none;
+}
+
+/* Hide scrollbar (Chrome, Safari) */
+.custom-select .options::-webkit-scrollbar {
+    display: none;
+}
+ 
+/* Hover option */
+.custom-select .option:hover {
+    background: #fff;
+}
+</style>
+ 
+<div class="progression-filters">
+ 
+    <!-- Course -->
+    <div class="filter-pair">
+        <div class="label">Filter by Kings course:</div>
+        <div class="custom-select" id="courseDropdown">
+            <div class="selected" data-value="all">All Courses</div>
+            <div class="options"></div>
+        </div>
+    </div>
+ 
+    <!-- Subject -->
+    <div class="filter-pair">
+        <div class="label">Filter by Degree subject:</div>
+        <div class="custom-select" id="subjectDropdown">
+            <div class="selected" data-value="all">All Subjects</div>
+            <div class="options"></div>
+        </div>
+    </div>
+ 
+</div>
+ 
+[[!getCourseAndSubjectMaps]]<!-- This snippet outputs the JS maps -->
+ 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const accordionItems = document.querySelectorAll('.uni-accordion-item');
+ 
+    const courseSet = new Set();
+    const subjectSet = new Set();
+ 
+    // Collect IDs
+    accordionItems.forEach(item => {
+        item.classList.forEach(cls => {
+            if (cls.startsWith('course-')) {
+                const id = cls.replace('course-', '');
+                if (id) courseSet.add(id);
+            }
+            if (cls.startsWith('subject-')) {
+                const id = cls.replace('subject-', '');
+                if (id) subjectSet.add(id);
+            }
+        });
+    });
+ 
+    // Build dropdowns
+    buildDropdown('courseDropdown', courseSet, window.courseMap);
+    buildDropdown('subjectDropdown', subjectSet, window.subjectMap);
+ 
+    function buildDropdown(id, set, map) {
+        const dropdown = document.getElementById(id);
+        const selected = dropdown.querySelector('.selected');
+        const optionsContainer = dropdown.querySelector('.options');
+ 
+        // Add "All"
+        createOption('all', 'All', dropdown);
+ 
+        Array.from(set).sort().forEach(value => {
+            const label = map[value] || value;
+            createOption(value, label, dropdown);
+        });
+ 
+        function createOption(value, label, dropdown) {
+            const option = document.createElement('div');
+            option.classList.add('option');
+            option.dataset.value = value;
+            option.textContent = label;
+ 
+            option.addEventListener('click', () => {
+                selected.textContent = label;
+                selected.dataset.value = value;
+                dropdown.classList.remove('open');
+                filterAccordions();
+            });
+ 
+            optionsContainer.appendChild(option);
+        }
+ 
+        // Toggle open
+        selected.addEventListener('click', () => {
+            document.querySelectorAll('.custom-select').forEach(d => d.classList.remove('open'));
+            dropdown.classList.toggle('open');
+        });
+    }
+ 
+    // Close when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.custom-select')) {
+            document.querySelectorAll('.custom-select').forEach(d => d.classList.remove('open'));
+        }
+    });
+ 
+    // Filtering
+    function filterAccordions() {
+        const selectedCourse = document.querySelector('#courseDropdown .selected').dataset.value;
+        const selectedSubject = document.querySelector('#subjectDropdown .selected').dataset.value;
+ 
+        accordionItems.forEach(item => {
+            const matchCourse = selectedCourse === 'all' || item.classList.contains('course-' + selectedCourse);
+            const matchSubject = selectedSubject === 'all' || item.classList.contains('subject-' + selectedSubject);
+ 
+            const show = matchCourse && matchSubject;
+ 
+            item.style.display = show ? 'block' : 'none';
+ 
+            const panel = item.nextElementSibling;
+            if (panel && panel.classList.contains('uni-accordion-panel')) {
+                panel.style.display = show ? 'block' : 'none';
+            }
+        });
+    }
+});
+</script>

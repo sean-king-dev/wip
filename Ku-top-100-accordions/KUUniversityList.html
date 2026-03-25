@@ -1,0 +1,60 @@
+[[!If?
+   &subject=`[[UltimateParent? &id=`[[*id]]`]]`
+   &operator=`EQ`
+   &operand=`[[++ultimate_uk]]`
+   &then=`[[pdoResources?
+        &parents=`22`
+        &depth=`0`
+        &tpl=`KUSingleUniBlock`
+        &processTVs=`true`
+        &includeTVs=`Thumbnail,Rank,RelatedSubjectMajor,RelatedKingsCourses`
+        &sortby=`{"Rank":"ASC"}`
+        &limit=`100`
+    ]]`
+]]
+
+[[!If?
+   &subject=`[[UltimateParent? &id=`[[*id]]`]]`
+   &operator=`EQ`
+   &operand=`[[++ultimate_us]]`
+   &then=`[[pdoResources?
+        &parents=`95`
+        &depth=`0`
+        &tpl=`KUSingleUniBlock`
+        &processTVs=`true`
+        &includeTVs=`Thumbnail,Rank,RelatedSubjectMajor,RelatedKingsCourses`
+        &sortby=`{"Rank":"ASC"}`
+        &limit=`100`
+    ]]`
+]]
+
+[[!If?
+   &subject=`[[UltimateParent? &id=`[[*id]]`]]`
+   &operator=`EQ`
+   &operand=`15234`
+   &then=`[[pdoResources?
+        &parents=`95`
+        &depth=`0`
+        &limit=`3`
+        &tpl=`KUSingleUniBlock`
+        &processTVs=`true`
+        &includeTVs=`Thumbnail,Rank,RelatedSubjectMajor,RelatedKingsCourses`
+        &sortby=`{"Rank":"ASC"}`
+        &limit=`100`
+    ]]`
+]]
+
+[[!If?
+   &subject=`[[UltimateParent? &id=`[[*id]]`]]`
+   &operator=`EQ`
+   &operand=`[[++ultimate_art]]`
+   &then=`[[pdoResources?
+        &parents=`14501`
+        &depth=`0`
+        &tpl=`KUSingleUniBlockArt`
+        &processTVs=`true`
+        &includeTVs=`Thumbnail,Rank`
+        &sortby=`{"Rank":"ASC"}`
+        &limit=`100`
+    ]]`
+]]

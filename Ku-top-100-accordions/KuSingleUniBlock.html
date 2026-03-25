@@ -1,0 +1,61 @@
+<div
+    class="uni-accordion-item [[+tv.RelatedSubjectMajor:customClassGen=`subject`]] [[+tv.RelatedKingsCourses:customClassGen=`course`]]" data-parent="[[+parent]]">
+
+    <!-- Accordion Header -->
+    <div class="uni-accordion-header">
+        <div class="uni-accordion-image" style="background-image: url('/[[+tv.Thumbnail]]');">
+        </div>
+
+        <div class="text">
+            <div class="title">
+                <span class="name">[[+pagetitle]]</span>
+                <br>
+                <span class="ranked">#[[+tv.Rank]]</span>
+            </div>
+
+        </div>
+        <div class="accordion-fa-buttons">
+            <div class="accordion-top button-down">
+                <i class="fa fa-angle-down"></i>
+            </div>
+            <div class="accordion-top button-down">
+                <i class="fa fa-angle-up"></i>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Accordion Panel -->
+<div class="uni-accordion-panel">
+
+    <div class="accordion-inner">
+        <div class="accordion-uni-decription">
+            <h3>About [[+pagetitle]]</h3>
+
+            <p>
+                [[+description]]
+            </p>
+        </div>
+
+
+        <div class="modx-resource-section">
+            [[!getResourceContent? &id=`[[+id]]`]]
+        </div>
+        [[!pdoResources?
+        &parents=`273`
+        &depth=`1`
+        &tpl=`KUSingleStory`
+        &tplWrapper=`KUSingleStoryWrapper`
+        &uniName=[[+pagetitle]]
+        &limit=`3`
+        &processTVs=`1`
+        &includeTVs=`StoryStudentImage,StoryStudentName,StoryStudentCourse,StoryStudentUniversity`
+        &tvFilters=`StoryStudentUniversity==[[+id]]`
+        &sortby=`menuindex`
+        &fastMode=`1`
+        &context=`web`
+        ]]
+    </div>
+
+</div>
